@@ -4,19 +4,21 @@ import protocol GraphQL.MapFallibleRepresentable
 @_exported import enum GraphQL.MapError
 
 final class AnyType : Hashable {
-    let type: Any.Type
-
-    init(_ type: Any.Type) {
-        self.type = type
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(String(describing: type))
-    }
-
-    static func == (lhs: AnyType, rhs: AnyType) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
+	let type: Any.Type
+	let typeName: String
+	
+	init(_ type: Any.Type) {
+		self.type = type
+		self.typeName = String(reflecting: type)
+	}
+	
+	func hash(into hasher: inout Hasher) {
+		hasher.combine(String(describing: typeName))
+	}
+	
+	static func == (lhs: AnyType, rhs: AnyType) -> Bool {
+		return lhs.typeName == rhs.typeName
+	}
 }
 
 func isProtocol(type: Any.Type) -> Bool {
