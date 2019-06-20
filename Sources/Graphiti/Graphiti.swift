@@ -1,3 +1,4 @@
+import Foundation
 import protocol GraphQL.MapFallibleRepresentable
 @_exported import enum GraphQL.Map
 @_exported import enum GraphQL.MapError
@@ -24,26 +25,19 @@ func isProtocol(type: Any.Type) -> Bool {
 }
 
 func fixName(_ name: String) -> String {
-    // In Swift 4, String(describing: MyClass.self) appends ' #1' for locally defined classes,
-    // which we consider invalid for a type name. Strip this by copying until the first space.
-    var workingString = name
-    
-    if name.hasPrefix("(") {
-        workingString = String(name.dropFirst())
-    }
-    
-    var newName: [Character] = []
-    for character in workingString {
-        if character != " " {
-            newName.append(character)
-        } else {
-            break
-        }
-    }
-
-    return String(newName)
+	// Remove the module from the type name, but allow nested types.
+	// `Swift.String` becomes `String`, and `FooModule.Bar.Baz` becomes `Bar.Baz`.
+	let splitByModule = name.split(separator: ".")
+	let moduleRemoved: String
+	if splitByModule.count > 1 {
+		moduleRemoved = String(splitByModule.dropFirst().joined())
+	} else {
+		moduleRemoved = name
+	}
+	let set = CharacterSet.letters
+	let fixedName = moduleRemoved.components(separatedBy: set.inverted).joined()
+	return fixedName
 }
-
 
 func isMapFallibleRepresentable(type: Any.Type) -> Bool {
     if isProtocol(type: type) {

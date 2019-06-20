@@ -60,7 +60,7 @@ public final class SchemaBuilder<Root, Context, EventLoop: EventLoopGroup> {
         interfaces: Any.Type...,
         build: (ObjectTypeBuilder<Root, Context, EventLoop, Type>) throws -> Void
         ) throws {
-        let name = fixName(String(describing: Type.self))
+        let name = fixName(String(reflecting: Type.self))
         try `object`(name: name, type: type, interfaces: interfaces, build: build)
     }
 
@@ -97,7 +97,7 @@ public final class SchemaBuilder<Root, Context, EventLoop: EventLoopGroup> {
         type: Type.Type,
         build: (InputObjectTypeBuilder<Root, Context, EventLoop, Type>) throws -> Void
         ) throws {
-        let name = fixName(String(describing: Type.self))
+        let name = fixName(String(reflecting: Type.self))
         try inputObject(name: name, type: type, build: build)
     }
 
@@ -122,7 +122,7 @@ public final class SchemaBuilder<Root, Context, EventLoop: EventLoopGroup> {
         type: Type.Type,
         build: (InterfaceTypeBuilder<Root, Context, EventLoop, Type>) throws -> Void
         ) throws {
-        let name = fixName(String(describing: Type.self))
+        let name = fixName(String(reflecting: Type.self))
         try interface(name: name, type: type, build: build)
     }
 
@@ -148,7 +148,7 @@ public final class SchemaBuilder<Root, Context, EventLoop: EventLoopGroup> {
         type: Type.Type,
         members: [Any.Type]
         ) throws {
-        let name = fixName(String(describing: Type.self))
+        let name = fixName(String(reflecting: Type.self))
         try union(name: name, type: type, members: members)
     }
 
@@ -166,7 +166,7 @@ public final class SchemaBuilder<Root, Context, EventLoop: EventLoopGroup> {
         type: Type.Type,
         build: (UnionTypeBuilder<Type>) throws -> Void
         ) throws {
-        let name = fixName(String(describing: Type.self))
+        let name = fixName(String(reflecting: Type.self))
         try union(name: name, type: type, build: build)
     }
 
@@ -192,7 +192,7 @@ public final class SchemaBuilder<Root, Context, EventLoop: EventLoopGroup> {
         type: Type.Type,
         build: (EnumTypeBuilder<Type>) throws -> Void
         ) throws {
-        let name = fixName(String(describing: Type.self))
+        let name = fixName(String(reflecting: Type.self))
         try `enum`(name: name, type: type, build: build)
     }
 
@@ -217,7 +217,7 @@ public final class SchemaBuilder<Root, Context, EventLoop: EventLoopGroup> {
         type: Type.Type,
         build: (ScalarTypeBuilder<Type>) throws -> Void
         ) throws {
-        let name = fixName(String(describing: Type.self))
+        let name = fixName(String(reflecting: Type.self))
         try scalar(name: name, type: type, build: build)
     }
 
@@ -304,7 +304,7 @@ public extension SchemaBuilder {
                     SchemaBuilder.getGraphQLOptionalType(from: GraphQLList($0), isOptional: isOptional)
                 }
             case .reference:
-                let name = fixName(String(describing: type.wrappedType))
+                let name = fixName(String(reflecting: type.wrappedType))
                 let referenceType = GraphQLTypeReference(name)
 
                 return SchemaBuilder.getGraphQLOptionalType(from: referenceType, isOptional: isOptional)
