@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/vapor/core.git",
         "state": {
           "branch": null,
-          "revision": "c64f63cb21631010952f7abfef719d376ab6a441",
-          "version": "3.9.1"
+          "revision": "10d33362a47fab03a067e78fb0791341d9c634fa",
+          "version": "3.9.3"
         }
       },
       {
@@ -15,26 +15,26 @@
         "repositoryURL": "https://github.com/wickwirew/CRuntime.git",
         "state": {
           "branch": null,
-          "revision": "8d0dd0ca3787d15682c1f44de3d298459870b121",
-          "version": "1.0.0"
+          "revision": "95f911318d8c885f6fc05e971471f94adfd39405",
+          "version": "2.1.2"
         }
       },
       {
         "package": "GraphQL",
-        "repositoryURL": "https://github.com/GraphQLSwift/GraphQL.git",
+        "repositoryURL": "https://github.com/noahemmet/GraphQL.git",
         "state": {
-          "branch": null,
-          "revision": "1d31d8c2e53be3f230fe552aafe19f995dd5f65e",
-          "version": "0.9.0"
+          "branch": "swift5-1",
+          "revision": "64b0b607023290204baebb063efe6eb99e98401a",
+          "version": null
         }
       },
       {
         "package": "Runtime",
         "repositoryURL": "https://github.com/wickwirew/Runtime.git",
         "state": {
-          "branch": null,
-          "revision": "40cdfbad9650512507c060824e1c4e9fc2ca721d",
-          "version": "1.1.0"
+          "branch": "master",
+          "revision": "5638402223ac41a4f3ddc45993534d8ff9c3f398",
+          "version": null
         }
       },
       {
